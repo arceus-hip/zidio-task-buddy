@@ -1,8 +1,6 @@
 
 import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import Layout from '@/components/layout/Layout';
-import { Button } from '@/components/ui/button';
+import Layout from '../components/layout/Layout';
 import { Clock, CheckCircle, AlertCircle, Plus, Filter } from 'lucide-react';
 
 // Sample task data
@@ -22,30 +20,30 @@ const Tasks = () => {
 
   return (
     <Layout>
-      <div className="max-w-6xl mx-auto">
+      <div className="container">
         <section className="mb-6 flex justify-between items-center">
           <div>
             <h1 className="text-4xl font-bold tracking-tight">Tasks</h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-muted">
               Manage and track your tasks efficiently
             </p>
           </div>
           <div className="flex gap-3">
-            <Button variant="outline" size="sm">
-              <Filter className="w-4 h-4 mr-2" />
+            <button className="btn btn-outline btn-sm">
+              <Filter className="nav-item-icon" />
               Filter
-            </Button>
-            <Button size="sm">
-              <Plus className="w-4 h-4 mr-2" />
+            </button>
+            <button className="btn btn-primary btn-sm">
+              <Plus className="nav-item-icon" />
               New Task
-            </Button>
+            </button>
           </div>
         </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <TaskColumn title="To Do" icon={<AlertCircle className="w-5 h-5 text-red-500" />} tasks={todoTasks} />
-          <TaskColumn title="In Progress" icon={<Clock className="w-5 h-5 text-amber-500" />} tasks={inProgressTasks} />
-          <TaskColumn title="Completed" icon={<CheckCircle className="w-5 h-5 text-emerald-500" />} tasks={completedTasks} />
+        <div className="grid grid-cols-3 gap-6">
+          <TaskColumn title="To Do" icon={<AlertCircle className="nav-item-icon" style={{color: '#ef4444'}} />} tasks={todoTasks} />
+          <TaskColumn title="In Progress" icon={<Clock className="nav-item-icon" style={{color: '#f59e0b'}} />} tasks={inProgressTasks} />
+          <TaskColumn title="Completed" icon={<CheckCircle className="nav-item-icon" style={{color: '#10b981'}} />} tasks={completedTasks} />
         </div>
       </div>
     </Layout>
@@ -53,21 +51,21 @@ const Tasks = () => {
 };
 
 const TaskColumn = ({ title, icon, tasks }) => (
-  <div className="flex flex-col h-full">
-    <div className="flex items-center gap-2 mb-4">
+  <div className="task-column">
+    <div className="task-column-header">
       {icon}
       <h3 className="font-semibold">{title}</h3>
-      <span className="bg-gray-100 text-gray-700 rounded-full px-2 py-0.5 text-xs ml-2">
+      <span className="task-badge" style={{background: '#f3f4f6', color: '#374151'}}>
         {tasks.length}
       </span>
     </div>
-    <div className="space-y-3 flex-grow">
+    <div className="space-y-3">
       {tasks.map(task => (
         <TaskCard key={task.id} task={task} />
       ))}
     </div>
     {tasks.length === 0 && (
-      <div className="border border-dashed rounded-md p-6 text-center text-muted-foreground flex-grow">
+      <div style={{border: '1px dashed #d1d5db', borderRadius: 'var(--radius)', padding: '1.5rem', textAlign: 'center', color: 'var(--muted-foreground)'}}>
         <p>No tasks</p>
       </div>
     )}
@@ -75,27 +73,27 @@ const TaskColumn = ({ title, icon, tasks }) => (
 );
 
 const TaskCard = ({ task }) => {
-  // Determine the priority badge color
-  const priorityBadgeColor = 
-    task.priority === 'high' ? 'bg-red-100 text-red-800' :
-    task.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-    'bg-green-100 text-green-800';
+  // Determine the priority badge class
+  const priorityBadgeClass = 
+    task.priority === 'high' ? 'badge-high' :
+    task.priority === 'medium' ? 'badge-medium' :
+    'badge-low';
   
   return (
-    <Card className="cursor-pointer hover:shadow-md transition-all">
-      <CardContent className="p-4">
+    <div className="card task-card">
+      <div className="card-content">
         <h4 className="font-medium mb-2">{task.title}</h4>
-        <div className="flex justify-between text-sm text-muted-foreground mb-2">
+        <div className="flex justify-between text-sm text-muted mb-2">
           <span>Due: {new Date(task.dueDate).toLocaleDateString()}</span>
         </div>
         <div className="flex justify-between items-center">
-          <span className={`text-xs ${priorityBadgeColor} px-2 py-0.5 rounded-full`}>
+          <span className={`task-badge ${priorityBadgeClass}`}>
             {task.priority}
           </span>
           <span className="text-xs">{task.assignee}</span>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 

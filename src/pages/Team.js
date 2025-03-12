@@ -1,8 +1,6 @@
 
 import React from 'react';
-import Layout from '@/components/layout/Layout';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import Layout from '../components/layout/Layout';
 import { Plus, MessageSquare, Mail, Phone } from 'lucide-react';
 
 // Sample team data
@@ -18,21 +16,21 @@ const teamMembers = [
 const Team = () => {
   return (
     <Layout>
-      <div className="max-w-6xl mx-auto">
+      <div className="container">
         <section className="mb-8 flex justify-between items-center">
           <div>
             <h1 className="text-4xl font-bold tracking-tight">Team</h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-muted">
               Manage your team members and their roles
             </p>
           </div>
-          <Button>
-            <Plus className="w-4 h-4 mr-2" />
+          <button className="btn btn-primary">
+            <Plus className="nav-item-icon" />
             Add Member
-          </Button>
+          </button>
         </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 gap-6">
           {teamMembers.map(member => (
             <TeamMemberCard key={member.id} member={member} />
           ))}
@@ -43,40 +41,40 @@ const Team = () => {
 };
 
 const TeamMemberCard = ({ member }) => (
-  <Card className="overflow-hidden hover:shadow-md transition-all">
-    <div className="bg-primary h-8"></div>
-    <CardContent className="pt-5 p-6">
+  <div className="card team-card">
+    <div className="team-card-header"></div>
+    <div className="card-content">
       <div className="flex flex-col items-center">
-        <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white -mt-16 mb-4 shadow-sm">
-          <img src={member.avatar} alt={member.name} className="w-full h-full object-cover" />
+        <div className="avatar">
+          <img src={member.avatar} alt={member.name} />
         </div>
         <h3 className="font-medium text-lg">{member.name}</h3>
-        <p className="text-muted-foreground mb-4">{member.role}</p>
+        <p className="text-muted mb-4">{member.role}</p>
         
-        <div className="flex justify-center gap-2 w-full">
-          <Button variant="outline" size="sm" className="flex-1 gap-2">
-            <Mail className="w-4 h-4" />
+        <div className="flex gap-2 w-100 mb-4">
+          <button className="btn btn-outline btn-sm">
+            <Mail className="nav-item-icon" />
             Email
-          </Button>
-          <Button variant="outline" size="sm" className="flex-1 gap-2">
-            <MessageSquare className="w-4 h-4" />
+          </button>
+          <button className="btn btn-outline btn-sm">
+            <MessageSquare className="nav-item-icon" />
             Chat
-          </Button>
+          </button>
         </div>
         
-        <div className="w-full mt-6 space-y-2 text-sm">
+        <div className="w-100 mt-6 space-y-2">
           <div className="flex items-center gap-2">
-            <Mail className="w-4 h-4 text-muted-foreground" />
+            <Mail className="nav-item-icon text-muted" />
             <span>{member.email}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Phone className="w-4 h-4 text-muted-foreground" />
+            <Phone className="nav-item-icon text-muted" />
             <span>{member.phone}</span>
           </div>
         </div>
       </div>
-    </CardContent>
-  </Card>
+    </div>
+  </div>
 );
 
 export default Team;
