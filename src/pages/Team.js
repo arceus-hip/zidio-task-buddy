@@ -42,16 +42,7 @@ const Team = () => {
   );
 };
 
-interface TeamMember {
-  id: number;
-  name: string;
-  role: string;
-  email: string;
-  phone: string;
-  avatar: string;
-}
-
-const TeamMemberCard = ({ member }: { member: TeamMember }) => (
+const TeamMemberCard = ({ member }) => (
   <Card className="overflow-hidden hover:shadow-md transition-all">
     <div className="bg-primary h-8"></div>
     <CardContent className="pt-5 p-6">

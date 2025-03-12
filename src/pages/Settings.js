@@ -132,14 +132,14 @@ const Settings = () => {
   );
 };
 
-const ProfileField = ({ label, value }: { label: string; value: string }) => (
+const ProfileField = ({ label, value }) => (
   <div>
     <div className="text-sm font-medium text-muted-foreground">{label}</div>
     <div className="text-base">{value}</div>
   </div>
 );
 
-const ToggleSetting = ({ title, description, enabled }: { title: string; description: string; enabled: boolean }) => (
+const ToggleSetting = ({ title, description, enabled }) => (
   <div className="flex items-center justify-between">
     <div>
       <h3 className="font-medium">{title}</h3>

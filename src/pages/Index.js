@@ -41,7 +41,7 @@ const Index = () => {
   );
 };
 
-const QuickActionCard = ({ title, description, link }: { title: string; description: string; link: string }) => (
+const QuickActionCard = ({ title, description, link }) => (
   <Card className="p-6 hover:shadow-lg transition-shadow duration-200">
     <h3 className="text-xl font-semibold mb-2">{title}</h3>
     <p className="text-muted-foreground mb-4">{description}</p>

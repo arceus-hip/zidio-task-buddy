@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { Clock, CheckCircle, AlertCircle, Plus, Filter } from 'lucide-react';
@@ -52,16 +52,7 @@ const Tasks = () => {
   );
 };
 
-interface Task {
-  id: number;
-  title: string;
-  status: string;
-  priority: string;
-  dueDate: string;
-  assignee: string;
-}
-
-const TaskColumn = ({ title, icon, tasks }: { title: string; icon: React.ReactNode; tasks: Task[] }) => (
+const TaskColumn = ({ title, icon, tasks }) => (
   <div className="flex flex-col h-full">
     <div className="flex items-center gap-2 mb-4">
       {icon}
@@ -83,7 +74,7 @@ const TaskColumn = ({ title, icon, tasks }: { title: string; icon: React.ReactNo
   </div>
 );
 
-const TaskCard = ({ task }: { task: Task }) => {
+const TaskCard = ({ task }) => {
   // Determine the priority badge color
   const priorityBadgeColor = 
     task.priority === 'high' ? 'bg-red-100 text-red-800' :

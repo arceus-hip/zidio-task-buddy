@@ -76,7 +76,7 @@ const Dashboard = () => {
   );
 };
 
-const StatCard = ({ title, value, description, icon }: { title: string; value: string; description: string; icon: React.ReactNode }) => (
+const StatCard = ({ title, value, description, icon }) => (
   <Card>
     <CardContent className="pt-6">
       <div className="flex justify-between items-start">

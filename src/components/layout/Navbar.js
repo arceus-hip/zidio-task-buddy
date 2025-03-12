@@ -56,17 +56,7 @@ const Navbar = () => {
   );
 };
 
-const NavItem = ({ 
-  icon, 
-  to, 
-  label, 
-  isActive 
-}: { 
-  icon: React.ReactNode; 
-  to: string; 
-  label: string; 
-  isActive: boolean 
-}) => (
+const NavItem = ({ icon, to, label, isActive }) => (
   <Link to={to}>
     <Button 
       variant={isActive ? "default" : "ghost"} 
