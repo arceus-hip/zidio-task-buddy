@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   return (
@@ -22,12 +23,12 @@ const Index = () => {
           <QuickActionCard
             title="Create New Task"
             description="Add a new task to your project backlog"
-            link="/tasks/new"
+            link="/tasks"
           />
           <QuickActionCard
-            title="View Projects"
+            title="View Dashboard"
             description="Check the status of ongoing projects"
-            link="/projects"
+            link="/dashboard"
           />
           <QuickActionCard
             title="Team Overview"
@@ -45,10 +46,10 @@ const QuickActionCard = ({ title, description, link }: { title: string; descript
     <h3 className="text-xl font-semibold mb-2">{title}</h3>
     <p className="text-muted-foreground mb-4">{description}</p>
     <Button variant="outline" className="w-full group" asChild>
-      <a href={link}>
+      <Link to={link}>
         Get Started
         <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-      </a>
+      </Link>
     </Button>
   </Card>
 );
