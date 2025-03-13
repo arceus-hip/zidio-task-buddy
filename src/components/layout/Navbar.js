@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, LayoutDashboard, Users, Calendar, Settings, LogOut } from 'lucide-react';
+import { Home, LayoutDashboard, Users, Calendar, Settings, LogOut, FolderKanban } from 'lucide-react';
 
 const Navbar = () => {
   const location = useLocation();
@@ -22,6 +22,12 @@ const Navbar = () => {
             to="/dashboard" 
             label="Dashboard" 
             isActive={location.pathname === '/dashboard'}
+          />
+          <NavItem 
+            icon={<FolderKanban className="nav-item-icon" />} 
+            to="/projects" 
+            label="Projects" 
+            isActive={location.pathname === '/projects'}
           />
           <NavItem 
             icon={<Users className="nav-item-icon" />} 

@@ -1,7 +1,8 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../components/layout/Layout';
-import { Plus, MessageSquare, Mail, Phone } from 'lucide-react';
+import { Plus, MessageSquare, Mail, Phone, UserPlus } from 'lucide-react';
+import TeamMemberForm from '../components/forms/TeamMemberForm';
 
 // Sample team data
 const teamMembers = [
@@ -14,6 +15,8 @@ const teamMembers = [
 ];
 
 const Team = () => {
+  const [showMemberForm, setShowMemberForm] = useState(false);
+
   return (
     <Layout>
       <div className="container">
@@ -24,13 +27,23 @@ const Team = () => {
               Manage your team members and their roles
             </p>
           </div>
-          <button className="btn btn-primary">
-            <Plus className="nav-item-icon" />
+          <button 
+            className="btn btn-primary"
+            onClick={() => setShowMemberForm(true)}
+          >
+            <UserPlus className="nav-item-icon" />
             Add Member
           </button>
         </section>
 
-        <div className="grid grid-cols-3 gap-6">
+        {showMemberForm && (
+          <div className="card mb-8 p-6">
+            <h2 className="text-xl font-semibold mb-4">Add Team Member</h2>
+            <TeamMemberForm onClose={() => setShowMemberForm(false)} />
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {teamMembers.map(member => (
             <TeamMemberCard key={member.id} member={member} />
           ))}
