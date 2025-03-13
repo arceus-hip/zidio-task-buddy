@@ -24,7 +24,9 @@ export default defineConfig(({ mode }: ConfigEnv) => ({
   esbuild: {
     jsx: 'automatic',
     jsxInject: `import React from 'react'`,
-    loader: 'jsx',
     include: /\.[jt]sx?$/,
+    loader: {
+      '.js': 'jsx'
+    }
   },
 }));
