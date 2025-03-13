@@ -12,7 +12,10 @@ export default defineConfig(({ mode }: ConfigEnv) => ({
     port: 8080,
   },
   plugins: [
-    react(),
+    react({
+      jsxImportSource: 'react',
+      tsDecorators: true,
+    }),
     mode === 'development' &&
     componentTagger(),
   ].filter(Boolean),
@@ -20,13 +23,13 @@ export default defineConfig(({ mode }: ConfigEnv) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
-  esbuild: {
-    jsx: 'automatic',
-    jsxInject: `import React from 'react'`,
-    include: /\.[jt]sx?$/,
-    loader: {
-      '.js': 'jsx'
-    }
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
   },
 }));
